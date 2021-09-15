@@ -8,7 +8,9 @@
 
 Palvelinohjelmointi - SWD4TN020
 
-// To be added
+This repository is being updated weekly. It contains the **newest** build **only**.
+
+For previous iterations visit my other repository [Palvelinohjelmointi | Joonas Kulmala](https://github.com/JoonasKulmala/Palvelinohjelmointi).
 
 ## License
 
