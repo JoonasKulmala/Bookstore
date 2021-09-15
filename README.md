@@ -1,5 +1,8 @@
 # Bookstore | Joonas Kulmala
 
+![GitHub top language](https://img.shields.io/github/languages/top/JoonasKulmala/Bookstore)
+![Website](https://img.shields.io/badge/-Spring-brightgreen)
+
 - [Bookstore | Joonas Kulmala](#bookstore--joonas-kulmala)
   - [Project description](#project-description)
   - [License](#license)
