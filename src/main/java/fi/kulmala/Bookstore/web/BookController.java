@@ -2,6 +2,8 @@ package fi.kulmala.Bookstore.web;
 
 import fi.kulmala.Bookstore.domain.Book;
 import fi.kulmala.Bookstore.domain.BookRepository;
+import fi.kulmala.Bookstore.domain.Category;
+import fi.kulmala.Bookstore.domain.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,16 @@ import java.util.List;
 public class BookController {
 	@Autowired
 	private BookRepository repository;
+	@Autowired
+	private CategoryRepository repository2;
 
 	public void doSomething() {
 		List<Book> books = repository.findByTitle("*");
+	}
+
+	// Useless?
+	public void doAnotherThing() {
+		List<Category> categories = repository2.findByName("*");
 	}
 
 	@RequestMapping("/index")
@@ -36,6 +45,8 @@ public class BookController {
 	@RequestMapping("/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		// category(s)
+		model.addAttribute("categories", repository2.findAll());
 		return "addbook";
 	}
 
@@ -54,6 +65,7 @@ public class BookController {
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", repository.findById(bookId));
+		model.addAttribute("categories", repository2.findAll());
 		return "editbook";
 	}
 

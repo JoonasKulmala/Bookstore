@@ -1,7 +1,6 @@
 package fi.kulmala.Bookstore;
 
-import fi.kulmala.Bookstore.domain.Book;
-import fi.kulmala.Bookstore.domain.BookRepository;
+import fi.kulmala.Bookstore.domain.*;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,14 +15,21 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner productionDemo(BookRepository repository) {
+	public CommandLineRunner productionDemo(BookRepository repository, CategoryRepository repository2) {
 		return (args) -> {
+			
+			// Empty database on startup
+			// repository.deleteAll();
+			// repository2.deleteAll();
+			
+			// Hard coded Category data
+			repository2.save(new Category("Science"));
+			repository2.save(new Category("Fiction"));
+			repository2.save(new Category("History"));
 
-			repository.deleteAll();
-
-			// Title, Author, Year, ISBN, Price
-			repository.save(new Book("Example Title", "Example Author", 10, "Example ISBN", 20));
-			repository.save(new Book("Spring Database & JPA", "Haaga-Helia", 2021, "isbn123", 0));
+			// Hard coded Book data
+			repository.save(new Book("Example Title", "Example Author", 2000, "Example ISBN", 20, repository2.findByName("Science").get(0)));
+			repository.save(new Book("Spring Database & JPA", "Haaga-Helia", 2021,"isbn123", 0.0, repository2.findByName("Fiction").get(0)));
 
 		};
 	}

@@ -31,11 +31,18 @@
 				<label for="isbn">Isbn</label>
 				<input type="text" id="isbn" th:field="*{isbn}" />
 				<label for="price">Price</label>
-				<input type="text" id="price" th:field="*{price}" />
+				<input type="text" id="price" th:field="*{price}" /><br>
+
+				<label for="categorylist">Category</label>
+				<select id="categorylist" style="width: 100px" th:field="*{category}" class="form-control">
+					<option th:each="category: ${categories}" th:value="${category.categoryid}"
+						th:text="${category.name}">
+					</option>
+				</select>
 				<br>
-				<input type="submit" value="Save" class="btn btn-success" ></input>
+				<input type="submit" value="Save" class="btn btn-success"></input>
 			</form>
-			
+
 			<td><a th:href="@{/booklist}" class="btn btn-warning">Cancel</a></td>
 		</div>
 
