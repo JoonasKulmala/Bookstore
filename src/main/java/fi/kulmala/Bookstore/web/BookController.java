@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BookController {
@@ -67,6 +69,16 @@ public class BookController {
 		model.addAttribute("book", repository.findById(bookId));
 		model.addAttribute("categories", repository2.findAll());
 		return "editbook";
+	}
+	
+	@RequestMapping(value = "/book", method=RequestMethod.GET)
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) repository.findAll();
+	}
+	
+	@RequestMapping(value = "/book/{id}", method=RequestMethod.GET)
+	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookid) {
+		return repository.findById(bookid);
 	}
 
 }
