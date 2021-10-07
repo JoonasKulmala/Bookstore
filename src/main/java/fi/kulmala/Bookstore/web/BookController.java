@@ -6,6 +6,7 @@ import fi.kulmala.Bookstore.domain.Category;
 import fi.kulmala.Bookstore.domain.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,10 +33,16 @@ public class BookController {
 	public void doAnotherThing() {
 		List<Category> categories = repository2.findByName("*");
 	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
 
-	@RequestMapping("/index")
+	@ResponseBody
+	@RequestMapping("/")
 	public String index() {
-		return "index";
+		return "Nothing to see here! Head to /booklist";
 	}
 
 	@RequestMapping("/booklist")
@@ -59,6 +66,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		repository.deleteById(bookId);
 		return "redirect:../booklist";
@@ -70,6 +78,8 @@ public class BookController {
 		model.addAttribute("categories", repository2.findAll());
 		return "editbook";
 	}
+	
+	// API endpoints
 	
 	@RequestMapping(value = "/book", method=RequestMethod.GET)
 	public @ResponseBody List<Book> bookListRest() {

@@ -7,8 +7,9 @@
   - [Project description](#project-description)
   - [Requirements](#requirements)
   - [Current features](#current-features)
-    - [CRUD functionality using H2 in-mem database](#crud-functionality-using-h2-in-mem-database)
-    - [REST](#rest)
+    - [Authentication](#authentication)
+    - [CRUD functionality](#crud-functionality)
+    - [REST API](#rest-api)
   - [License](#license)
 
 ## Project description
@@ -21,23 +22,45 @@ For previous iterations visit my other repository [Palvelinohjelmointi | Joonas 
 
 ## Requirements
 
-`Java 11` is required.
-
-## Current features
+`Java 11` is required to run this application.
 
 Run the main application file [BookstoreApplication.java](src/main/java/fi/kulmala/Bookstore/BookstoreApplication.java) and open browser at port 8080
 
-### CRUD functionality using H2 in-mem database
+    localhost:8080
 
-CRUD functions are available at `/studentlist`
+## Current features
+
+### Authentication
+
+Two users are initialized on application startup:
+
+- user/user (role=user)
+- admin/admin (role=admin)
+
+Application has the following authentication services:
+
+- registration
+- login
 
 <kbd>
-  <img src="Resources/booklist_css.png", width=700 height=100%>
+  <img src="Resources/login.png", width=200 height=100%>
 </kbd>
 
-### REST
+### CRUD functionality
 
-Rest API endpoints are available at `/api`
+Navigate to main view
+
+    localhost:8080/booklist
+
+<kbd>
+  <img src="Resources/booklist.png", width=600 height=100%>
+</kbd>
+
+### REST API
+
+Rest API endpoints are available at
+
+    localhost:8080/api
 
 <kbd>
   <img src="Resources/api.png", width=350 height=100%>
