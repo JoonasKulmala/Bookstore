@@ -20,6 +20,8 @@ This repository is being updated weekly. It contains the **newest** build **only
 
 For previous iterations visit my other repository [Palvelinohjelmointi | Joonas Kulmala](https://github.com/JoonasKulmala/Palvelinohjelmointi).
 
+***Live Build*** deployed via [Heroku - joonaskulmala.bookstore](https://joonaskulmala-bookstore.herokuapp.com/booklist)
+
 ## Requirements
 
 `Java 11` is required to run this application.
